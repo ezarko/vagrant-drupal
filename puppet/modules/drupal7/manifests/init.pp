@@ -9,17 +9,7 @@ class drupal7 (
 ) {
   validate_string($docroot)
 
-  package { git:
-    ensure => present,
-  }
-
-  package {["gd","gd-devel","php-gd","php-mbstring","php-pdo","php-pgsql","php-xml"]:
-    ensure => installed,
-  }->
-  file { "/etc/php.ini":
-    source => "puppet:///modules/drupal7/php.ini",
-    notify => Service['httpd'],
-  }
+  require php
 
   vcsrepo { $docroot:
     ensure => present,
