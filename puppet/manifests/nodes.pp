@@ -1,6 +1,7 @@
 Exec { path => "/usr/local/bin:/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/sbin" }
 
 node default {
+  require baseline
   if $features =~ /(drupal7)/ {
     include centos_fw
     firewall { '100 allow http access':
@@ -16,7 +17,7 @@ node default {
     include postgresql::server
     postgresql::db { 'mydatabasename':
       user     => 'mydatabaseuser',
-      password => 'mypassword'
+      password => $randompass,
     }
     class{ 'drupal7':
       docroot        => '/var/www/html',
@@ -34,7 +35,7 @@ node default {
       #default time zone
       #check for updates
       #  - email
-      require => Class['apache'],
+      #require => Class['apache'],
     }
   }
 }

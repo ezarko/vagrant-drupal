@@ -16,3 +16,6 @@
 [submodule "puppet/modules/postgresql"]
 	path = puppet/modules/postgresql
 	url = https://github.com/puppetlabs/puppetlabs-postgresql.git
+[submodule "puppet/modules/centos_fw"]
+	path = puppet/modules/centos_fw
+	url = https://github.com/ezarko/puppet-centos_fw.git
