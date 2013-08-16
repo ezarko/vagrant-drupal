@@ -17,7 +17,7 @@ node default {
     include postgresql::server
     postgresql::db { 'mydatabasename':
       user     => 'mydatabaseuser',
-      password => 'mypassword'
+      password => $randompass,
     }
     class{ 'drupal7':
       docroot        => '/var/www/html',
