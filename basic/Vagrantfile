@@ -33,7 +33,7 @@ Vagrant.configure("2") do |config|
 
   # Prep for puppet
   config.vm.provision :shell,
-    :inline => 'if [ ! -e "/etc/facter/facts.d/randompass.txt" ]; then mkdir -p /etc/facter/facts.d; echo -n randompass= > /etc/facter/facts.d/randompass.txt; curl "https://www.random.org/passwords/?num=1&len=12&format=plain&rnd=new" >> /etc/facter/facts.d/randompass.txt; fi' 
+    :inline => 'if [ ! -e "/etc/facter/facts.d/randompass.txt" ]; then mkdir -p /etc/facter/facts.d; echo -n randompass= > /etc/facter/facts.d/randompass.txt; curl -fsSo - "https://www.random.org/passwords/?num=1&len=12&format=plain&rnd=new" >> /etc/facter/facts.d/randompass.txt; fi' 
 
   # Enable provisioning with Puppet stand alone.  Puppet manifests
   # are contained in a directory path relative to this Vagrantfile.
